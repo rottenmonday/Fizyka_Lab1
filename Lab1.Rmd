@@ -1,0 +1,45 @@
+---
+title: "Fizyka 2"
+subtitle: "Laboratorium 1"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author:
+- Krzysztof Łopatowski
+- Krzysztof Woźniak
+- Aleksander Wiśniewski
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+   
+# Wstęp
+
+## Przedmiot badań
+
+Laboratorium miało dwa przedmioty badań:
+
+1. Przy użyciu **suwmiarki** i **mikrometru**, liczenie odpowiednich wielkości w przykładowym walcu i prostopadłościanie (szerokości, wysokości, średnice, głębokości)
+
+2. Posiadając obwód elektryczny, odpowiednio podłączając zasilacz, **woltomierz** oraz **amperomierz**, liczenie zmieniających się napięć i natężeń prądu na opornikach.
+
+## Cel badań
+
+Głównym celem badań było sprawdzenie, czy zależność między napięciem a natężeniem prądu na oporniku jest zgodne z założeniem teoretycznym: $R=\frac{U}{I}$
+
+# Teoria
+
+Rozważane przez nas zagadnienie to prąd w obwodzie elektrycznym i zależność między spadkiem napięcia na oporniku a natężeniem prądu płynącego przez układ. Zależność nazwana **prawem Ohma** mówi, że stosunek napięcia do natężenia prądu jest stały: $\frac{U}{I}=const$. Stosunek ten nazywamy oporem elektrycznym: $R=\frac{U}{I}$.
+
+Wartość oporu elektrycznego można też wyrazić w zależności od własności przewodnika: $R=\rho\frac{l}{S}$, gdzie $\rho$ to opór właściwy, $l$ to długość przewodu, a $S$ to pole przekroju.
+
+Do pomiaru płynącego prądu stosuje się amperomierz, który podłącza się do obwodu szeregowo. Do zmierzenia spadku napięcia na oporniku wykorzystuje się woltomierz, który podłącza się równolegle. Amperomierz powinien charakteryzować się bardzo niskim oporem wewnętrznym, natomiast dla woltomierza powinno zachodzić $R_v\to\infty$
+
+Istotnym zagadnieniem pierwszego laboratorium jest wyznaczanie niepewności pomiarowej: w kontekście obliczeń suwmiarką/mikrometrem, ale też w kontekście wyliczeń oporów. Wyróżniamy dwie metody obliczania niepewności pomiaru:
+
+1. Obliczenie niepewności pomiaru **metodą typu A** jest metodą opartą o wyliczanie niepewności w oparciu o analizę statystyczną, np. przez metodę najmniejszych kwadratów
+
+2. Obliczenie niepewności pomiaru **metodą typu B**: czyli każda metoda inna niż typu A. Zwykle w oparciu o dane o sprzęcie, np. niepewność wzorcowania, czy też niepewność eksperymentatora.
+
+# Układ eksperymentalny
+
