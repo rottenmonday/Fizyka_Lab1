@@ -27,7 +27,7 @@ library(kableExtra)
 
 Laboratorium miało dwa przedmioty badań:
 
-1. Przy użyciu **suwmiarki** i **mikrometru**, liczenie odpowiednich wielkości w przykładowym walcu i prostopadłościanie (szerokości, wysokości, średnice, głębokości)
+1. Przy użyciu **suwmiarki** i **mikrometru**, liczenie odpowiednich wielkości w przykładowym walcu i prostopadłościanie (szerokości, wysokości, średnice, głębokości).
 
 2. Posiadając obwód elektryczny, odpowiednio podłączając zasilacz, **woltomierz** oraz **amperomierz**, liczenie zmieniających się napięć i natężeń prądu na opornikach.
 
@@ -51,6 +51,12 @@ Istotnym zagadnieniem pierwszego laboratorium jest wyznaczanie niepewności pomi
 
 # Układ eksperymentalny
 
+1. W pierwszej części laboratoriów używana była suwmiarka oraz mikrometr do badania różnych wielkości w prostpadłościanie i walcu. Dokładność suwmiarki wynosiła 0,02mm, a mikrometru: 0,01mm. W obu przypadkach niepewność eksperymentatora przyjęto jako połowę niepewności wzorcowania. \newline
+W prostopadłościanie liczone były wszystkie wymiary. Długość i szerokość prostopadłościanu, rzędu kilku centymetrów, liczone były za pomocą suwmiarki. Wysokość prostopadłościanu liczona była za pomocą mikrometru.\newline
+Walec charakteryzował się tym, że w jego środku wydrążona była dziura w kształcie walca. Ostatecznym celem było wyliczenie objętości większego walca, a w tym celu liczone były za pomocą suwmiarki: wysokość walca zewnętrznego, wysokość walca wewnętrznego, średnica walca wewnętrznego, średnica walca zewnętrznego. W celu wyliczenia objętości walca, odjęto objętość wewnętrznego od objętości walca zewnętrznego. Formuła na objętość walca to: $P=\pi r^2H$
+
+2. Drugim celem laboratoriów były eksperymenty z obwodami elektrycznymi. Mieliśmy dostępną płytkę z obwodem, do której mogliśmy podłączać zasilanie, woltomierz oraz amperomierz. Używanym woltomierzem był miernik typu **UM-112B**. Do zliczania natężenia używano miernika **METEX M-3800**. Model zasilacza to **DF1730SL5A**. \newline
+W ramach eksperymentu mierzone były napięcia i natężenia na czterech opornikach. Na trzech opornikach wykonano po jednym pomiarze, a na czwartym 10 pomiarów. Pomiary na czwartym oporniku wyglądały tak: na początku staraliśmy się ustawić zasilaczem natężenie prądu przepływającego przez opornik tak, aby amperomierz wskazywał 60mA. Sprawdzaliśmy wtedy spadek napięcia na oporniku na woltomierzu. W każdym kolejnym pomiarze staraliśmy się osiągać natężenie prądu o ~6mA mniejsze i ponownie sprawdzaliśmy napięcie.
 
 # Dane eksperymentalne
 
@@ -162,3 +168,4 @@ colnames(tabela_pomiar) <- c("lp.", "Opornik" ,"U ($V$)", "I ($mA$)", "Zakres U 
 kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Oporniki R1, R2, R3") %>%
    kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
 ```
+
