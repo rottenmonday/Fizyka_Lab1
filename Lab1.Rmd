@@ -1,16 +1,24 @@
 ---
 title: "Fizyka 2"
-subtitle: "Laboratorium 1"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
 author:
 - Krzysztof Łopatowski
 - Krzysztof Woźniak
 - Aleksander Wiśniewski
-output: pdf_document
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  word_document: default
+subtitle: Laboratorium 1
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
 ```
    
 # Wstęp
@@ -43,3 +51,114 @@ Istotnym zagadnieniem pierwszego laboratorium jest wyznaczanie niepewności pomi
 
 # Układ eksperymentalny
 
+
+# Dane eksperymentalne
+
+## Prostopadłościan
+### Wysokosc
+
+```{R, echo=FALSE}
+pomiar_h <- read_excel("data.xlsx", "prost_h")
+
+
+tabela_pomiar <- data.frame(pomiar_h["lp."],
+                            pomiar_h["h"],
+                            check.names = FALSE)
+
+colnames(tabela_pomiar) <- c("lp.", "Wysokość ($mm$)")
+
+kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Wysokość prostopadłościanu") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+```
+
+### a, b
+```{R, echo=FALSE}
+pomiar_ab <- read_excel("data.xlsx", "prost_ab")
+
+
+tabela_pomiar <- data.frame(pomiar_ab["lp."],
+                            pomiar_ab["a"],
+                            pomiar_ab["b"],
+                            check.names = FALSE)
+
+colnames(tabela_pomiar) <- c("lp.", "Bok a ($cm$)", "Bok b ($cm$)")
+
+kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Boki a i b prostopadłościanu") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+```
+
+## Walec
+### R, H, r
+
+```{R, echo=FALSE}
+pomiar_RHr <- read_excel("data.xlsx", "walec_RHr")
+
+
+tabela_pomiar <- data.frame(pomiar_RHr["lp."],
+                            pomiar_RHr["R"],
+                            pomiar_RHr["H"],
+                            pomiar_RHr["r"],
+                            check.names = FALSE)
+
+colnames(tabela_pomiar) <- c("lp.", "R ($cm$)", "H ($cm$)", "r ($cm$)")
+
+kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Wymiary R, H i r walca") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+```
+
+### h
+
+```{R, echo=FALSE}
+pomiar_h <- read_excel("data.xlsx", "walec_h")
+
+
+tabela_pomiar <- data.frame(pomiar_h["lp."],
+                            pomiar_h["h"],
+                            check.names = FALSE)
+
+colnames(tabela_pomiar) <- c("lp.", "h ($cm$)")
+
+kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Wysokość walca wewnętrzenego") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+```
+
+## Prądy
+
+### R4
+
+```{R, echo=FALSE}
+pomiar_R4 <- read_excel("data.xlsx", "R4")
+
+
+tabela_pomiar <- data.frame(pomiar_R4["lp."],
+                            pomiar_R4["U"],
+                            pomiar_R4["I"],
+                            pomiar_R4["ZU"],
+                            pomiar_R4["ZI"],
+                            check.names = FALSE)
+
+colnames(tabela_pomiar) <- c("lp.", "U ($V$)", "I ($mA$)", "Zakres U ($V$)", "Zakres I ($mA$)")
+
+kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Wymiar h walca") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+```
+
+### R1, R2, R3
+
+```{R, echo=FALSE}
+pomiar_R123 <- read_excel("data.xlsx", "R123")
+
+
+tabela_pomiar <- data.frame(pomiar_R123["lp."],
+                            pomiar_R123["Opor"],
+                            pomiar_R123["U"],
+                            pomiar_R123["I"],
+                            pomiar_R123["ZU"],
+                            pomiar_R123["ZI"],
+                            check.names = FALSE)
+
+colnames(tabela_pomiar) <- c("lp.", "Opornik" ,"U ($V$)", "I ($mA$)", "Zakres U ($V$)", "Zakres I ($mA$)")
+
+kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Oporniki R1, R2, R3") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+```
