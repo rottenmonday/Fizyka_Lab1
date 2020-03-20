@@ -55,7 +55,7 @@ Istotnym zagadnieniem pierwszego laboratorium jest wyznaczanie niepewności pomi
 # Dane eksperymentalne
 
 ## Prostopadłościan
-### Wysokosc
+### Wysokość
 
 ```{R, echo=FALSE}
 pomiar_h <- read_excel("data.xlsx", "prost_h")
@@ -71,7 +71,7 @@ kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "W
    kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
 ```
 
-### a, b
+### Wymiary a, b
 ```{R, echo=FALSE}
 pomiar_ab <- read_excel("data.xlsx", "prost_ab")
 
