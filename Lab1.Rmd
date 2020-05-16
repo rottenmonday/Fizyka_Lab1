@@ -145,7 +145,7 @@ tabela_pomiar <- data.frame(pomiar_R4["lp."],
 
 colnames(tabela_pomiar) <- c("lp.", "U ($V$)", "I ($mA$)", "Zakres U ($V$)", "Zakres I ($mA$)")
 
-kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Wymiar h walca") %>%
+kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Opornik R4") %>%
    kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
 ```
 
