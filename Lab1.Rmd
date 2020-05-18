@@ -266,7 +266,8 @@ pomiar_R4 <- read_excel("data2.xlsx", "R4")
 pomiar_R4 <- pomiar_R4[, c("UU", "II", "dUU", "dII")]
 p <- ggplot(pomiar_R4, aes(x=II, y=UU)) + geom_point() + 
    geom_errorbar(aes(ymin=UU-dUU, ymax=UU+dUU, xmin=II-dII, xmax=II+dII), width=0.001) +
-   labs(x = "I[A]", y = "U[V]")
+   labs(x = "I[A]", y = "U[V]") +
+   ggtitle("Obserwacje natężenia i napięcia")
 p
 
 ```
@@ -279,7 +280,8 @@ pomiar_R4 <- pomiar_R4[1:9, c("UU", "II", "dUU", "dII")]
 p <- ggplot(pomiar_R4, aes(x=II, y=UU)) + geom_point() + 
    geom_errorbar(aes(ymin=UU-dUU, ymax=UU+dUU, xmin=II-dII, xmax=II+dII), width=0.001) +
    geom_smooth(method='lm') +
-   labs(x = "I[A]", y = "U[V]")
+   labs(x = "I[A]", y = "U[V]") +
+   ggtitle("Prosta dopasowana do obserwacji")
 p
 a <- ((lm(UU ~ II, data=pomiar_R4))[["coefficients"]])[2]
 
