@@ -27,23 +27,23 @@ library(kableExtra)
 
 Laboratorium miało dwa przedmioty badań:
 
-1. Przy użyciu **suwmiarki** i **mikrometru**, obliczenie objętości walca i prostopadłościanu wraz z niepewnościami wyników.
+1. Obliczenie objętości walca i prostopadłościanu wraz z niepewnościami wyników przy użyciu **suwmiarki** i **mikrometru**.
 
-2. Wyznaczanie zmieniających się napięć i natężeń prądu na opornikach w obwodzie elektycznym wykorzystując **woltomierz**, **amperomierz** i **zasilasz laboratoryjny**.
+2. Wyznaczanie zmieniających się napięć i natężeń prądu na opornikach w obwodzie elektrycznym przy wykorzystaniu **woltomierza**, **amperomierza** i **zasilacza laboratoryjnego**.
 
 ## Cel badań
 
-Głównym celem badań były weryfikacja prawa Ohma oraz oswojenie się z metodami pomiaru.
+Głównym celem badań była weryfikacja prawa Ohma oraz oswojenie się z metodami pomiaru.
 
 ## Teoria
 
-Rozważane przez nas zagadnienie to prąd w obwodzie elektrycznym i zależność między spadkiem napięcia na oporniku a natężeniem prądu płynącego przez układ. Zależność nazwana **prawem Ohma** mówi, że stosunek napięcia do natężenia prądu jest stały: $\frac{U}{I}=const$. Stosunek ten nazywamy oporem elektrycznym: $R=\frac{U}{I}$.
+Rozważane przez nas zagadnienie to prąd w obwodzie elektrycznym i zależność między spadkiem napięcia na oporniku a natężeniem prądu płynącego przez układ. Zależność nazywana **prawem Ohma** mówi, że stosunek napięcia do natężenia prądu jest stały: $\frac{U}{I}=const$. Stosunek ten nazywamy oporem elektrycznym: $R=\frac{U}{I}$.
 
 Do pomiaru płynącego prądu stosuje się amperomierz, który podłącza się do obwodu szeregowo. Do zmierzenia spadku napięcia na oporniku wykorzystuje się woltomierz, który podłącza się równolegle. Amperomierz powinien charakteryzować się bardzo niskim oporem wewnętrznym, natomiast dla woltomierza powinno zachodzić $R_v\to\infty$
 
 Istotnym zagadnieniem pierwszego laboratorium jest wyznaczanie niepewności pomiarowej: w kontekście obliczeń suwmiarką/mikrometrem, ale też w kontekście wyliczeń oporów. Wyróżniamy dwie metody obliczania niepewności pomiaru:
 
-1. Obliczenie niepewności pomiaru **metodą typu A** jest metodą opartą o wyliczanie niepewności w oparciu o analizę statystyczną, np. przez metodę najmniejszych kwadratów
+1. Obliczenie niepewności pomiaru **metodą typu A** polega na wyliczeniu niepewności w oparciu o analizę statystyczną, np. przez metodę najmniejszych kwadratów
 
 2. Obliczenie niepewności pomiaru **metodą typu B**: czyli każda metoda inna niż typu A. Zwykle w oparciu o dane o sprzęcie, np. niepewność wzorcowania, czy też niepewność eksperymentatora.
 
@@ -53,21 +53,21 @@ cat("\\newpage")
 
 # Układ eksperymentalny
 
-1. W pierwszej części laboratoriów używana była suwmiarka oraz mikrometr do badania różnych wielkości w prostpadłościanie i walcu. 
+1. W pierwszej części laboratorium do badania różnych wielkości w prostpadłościanie i walcu użyto suwmiarki oraz mikrometru.
 Dokładność suwmiarki i mikrometru wynosiły odpowiednio 0,02mm i 0,01mm. 
 W obu przypadkach niepewność eksperymentatora przyjęto jako połowę niepewności wzorcowania. 
 \newline
 \newline
-Długość i szerokość prostopadłościanu, rzędu kilku centymetrów, liczone były za pomocą suwmiarki. 
-Wysokość prostopadłościanu liczona była za pomocą mikrometru.
+Długość i szerokość prostopadłościanu, rzędu kilku centymetrów, mierzone były za pomocą suwmiarki. 
+Wysokość prostopadłościanu mierzona była za pomocą mikrometru.
 \newline
 \newline
 Bryła wcześniej nazywana jako walec miała kształt walca z wywierconym mniejszym walcem w środku.
-Celem eksperymentu było wyliczenie objętości tej bryły, dlatego liczone były za pomocą suwmiarki: wysokość walca zewnętrznego ($H$), wysokość walca wewnętrznego ($h$), średnica walca wewnętrznego ($d$), średnica walca zewnętrznego ($D$). 
+Celem eksperymentu było wyliczenie objętości tej bryły, dlatego mierzone były za pomocą suwmiarki: wysokość walca zewnętrznego ($H$), wysokość walca wewnętrznego ($h$), średnica walca wewnętrznego ($d$), średnica walca zewnętrznego ($D$). 
 Formuła na objętość matematycznego modelu bryły to $$V = \frac{\pi}{4}(D^2H - d^2h)$$
 
-2. Drugim celem laboratoriów były eksperymenty z obwodami elektrycznymi. 
-Mieliśmy dostępną płytkę z obwodem, do której mogliśmy podłączać zasilanie, woltomierz oraz amperomierz. 
+2. Drugim celem laboratorium były eksperymenty z obwodami elektrycznymi. 
+Wykorzystano płytkę z obwodem, do której można było podłączać zasilanie, woltomierz oraz amperomierz. 
 Używanym woltomierzem był miernik uniwersalny **UM-112B**. 
 Do zliczania natężenia używano cyfowego miernika uniwersalnego **METEX M-3800**. 
 Model zasilacza to **DF1730SL5A**. 
@@ -75,9 +75,9 @@ Model zasilacza to **DF1730SL5A**.
 \newline
 W ramach eksperymentu mierzone były napięcia i natężenia na czterech opornikach. 
 Na trzech opornikach wykonano po jednym pomiarze, a na czwartym 10 pomiarów. 
-Pomiary na czwartym oporniku wyglądały tak: na początku staraliśmy się ustawić zasilaczem natężenie prądu przepływającego przez opornik tak, aby amperomierz wskazywał 60mA. 
-Sprawdzaliśmy wtedy spadek napięcia na oporniku na woltomierzu. 
-W każdym kolejnym pomiarze staraliśmy się osiągać natężenie prądu o ~6mA mniejsze i ponownie sprawdzaliśmy napięcie.
+Pomiary na czwartym oporniku wyglądały następująco: na początku staraliśmy się ustawić zasilaczem natężenie prądu przepływającego przez opornik tak, aby amperomierz wskazywał 60mA. 
+Sprawdzono wtedy spadek napięcia na oporniku przy pomocy woltomierzu. 
+W każdym kolejnym pomiarze starano się osiągać natężenie prądu o ~6mA mniejsze i ponownie sprawdzano napięcie.
 
 # Dane eksperymentalne
 
@@ -207,9 +207,9 @@ prost_ab_cal <- round(sqrt((0.02^2/3) + (0.01^2/3)), 4)
 prost_cal <- round(sqrt(h_cal^2 + prost_ab_cal^2 + prost_ab_cal^2 ), 2)
 ```
 
-Średnie długości wysokości, boków a oraz b prostopadłościanu wynoszą odpowiednio `r prost_h_avg`mm, `r prost_a_avg`mm, `r prost_b_avg`mm. Z otrzymanych wyników otrzymano objętość prostopadłościanu V = `r prost_V`mm^3^.
+Średnie długości wysokości, boków a oraz b prostopadłościanu wynoszą odpowiednio `r prost_h_avg`mm, `r prost_a_avg`mm, `r prost_b_avg`mm. Z otrzymanych wyników obliczono objętość prostopadłościanu V = `r prost_V`mm^3^.
 
-Wysokość prostopadłościanu mierzono za pomocą mikrometru, którego niepewność wzorcowania wynosi 0.01mm. Niepewność eksperymentatora przyjęto za 0.005mm. Niepewność typu B dla wysokości wynosi więc $\sqrt{\frac{0.01^2}{3} + \frac{0.005^2}{3}}$mm, czyli `r prost_B_h`cm. Ze wzoru $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$ niepewność typu A wynosi `r prost_A_h`mm, co daje niepewność całkowitą równą `r h_cal`mm.
+Wysokość prostopadłościanu mierzono za pomocą mikrometru, którego niepewność wzorcowania wynosi 0,01mm. Niepewność eksperymentatora przyjęto za 0,005mm. Niepewność typu B dla wysokości wynosi więc $\sqrt{\frac{0,01^2}{3} + \frac{0,005^2}{3}}$mm, czyli `r prost_B_h`mm. Ze wzoru $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$ niepewność typu A wynosi `r prost_A_h`mm, co daje niepewność całkowitą równą `r h_cal`mm.
 
 ```{r, results='asis', echo=FALSE}
 cat("\\newpage")
@@ -217,14 +217,14 @@ cat("\\newpage")
 
 Dla boków a i b rozpatrujemy tylko niepewności typu B. Niepewność wzorcowania suwmiarki wynosi 0.02mm, niepewność eksperymentatora 0.01mm, więc niepewność typu B dla obu tych boków wynosi: $\sqrt{\frac{0.02^2}{3} + \frac{0.01^2}{3}}$mm, czyli `r prost_ab_cal`cm.
 
-Aby obliczyć niepewność całkowitą skorzystamy ze wzoru  $u(V)=\sqrt{(\frac{\partial V}{\partial h})u^2(h) + (\frac{\partial V}{\partial a})u^2(a) + (\frac{\partial V}{\partial b})u^2(b) }$. Niepewność złożona objętości wynosi: `r prost_cal`cm^3^. Co daje ostateczny wynik `r prost_V`(`r prost_cal`)cm^3^.
+Aby obliczyć niepewność całkowitą skorzystano ze wzoru  $u(V)=\sqrt{(\frac{\partial V}{\partial h})u^2(h) + (\frac{\partial V}{\partial a})u^2(a) + (\frac{\partial V}{\partial b})u^2(b) }$. Niepewność złożona objętości wynosi: `r prost_cal`cm^3^. Ostateczny wynik `r prost_V`(`r prost_cal`)cm^3^.
 
 
 
 
 ## Analiza wyników obliczeń objętości walca
 
-Korzystając ze wzoru na objętość walca z wyciętym kawałkiem: $V = \frac{\pi}{4}(D^2H - d^2h)$, policzymy objętość walca z laboratorium. Następnie wyliczymy niepewność pomiarową tych obliczeń, korzystając ze wzoru na niepewność złożoną. W pomiarach na D, H i d bierzemy pod uwagę tylko niepewność typu B, natomiast w pomiarze h bierzemy pod uwagę oba typy niepewności
+Korzystając ze wzoru na objętość walca z wyciętym kawałkiem: $V = \frac{\pi}{4}(D^2H - d^2h)$, obliczono objętość bryły. Następnie wyliczono niepewność pomiarową, korzystając ze wzoru na niepewność złożoną. W pomiarach na D, H i d brano pod uwagę tylko niepewność typu B, natomiast w pomiarze h brano pod uwagę oba typy niepewności
 
 ```{r setupWalec, echo=FALSE, message=FALSE}
 RHr <- read_excel("data.xlsx", "walec_RHr")
@@ -248,9 +248,9 @@ sumbledroot <- round(sqrt(sumbled), digit=3)
 
 Wartość średnia D wynosi: `r R`cm, d: `r r`cm, H: `r H`cm, h: `r hh`cm. Niepewność wzorcowania suwmiarki wynosi 0.02mm, więc niepewność typu B dla wszystkich tych obliczeń wynosi: $\sqrt{\frac{0.02^2}{3} + \frac{0.01^2}{3}}$mm, czyli `r nieppom`cm.
 
-Policzymy teraz niepewność typu A dla wysokości walca wewnętrznego. Wyraża się ona wzorem: $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$. Niepewność ta wynosi: `r aniepval`cm. Niepewność całkowita dla wysokości walca wewnętrznego wynosi: `r niepcal`cm.
+Niepewność typu A dla wysokości walca wewnętrznego wyraża się ona wzorem: $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$ i wynosi: `r aniepval`cm. Niepewność całkowita dla wysokości walca wewnętrznego wynosi: `r niepcal`cm.
 
-Korzystając ze wcześniej wspomnianego wzoru i odpowiednich wartości wyliczamy, że objętość walca wynosi: `r V`$cm^3$. Skorzystamy teraz ze wzoru na niepewność złożoną aby wyliczyć niepewność obliczania objętości walca: $u(V)=\sqrt{(\frac{\partial V}{\partial D})u^2(D) + (\frac{\partial V}{\partial d})u^2(d) + (\frac{\partial V}{\partial H})u^2(H) + (\frac{\partial V}{\partial h})u^2(h)}$. Niepewność złożona wynosi ostatecznie: `r sumbledroot`cm^3^. W takim razie wyliczona objętość wynosi `r V`(`r sumbledroot`)$cm^3$.
+Korzystając ze wcześniej wspomnianego wzoru i odpowiednich wartości wyliczono, że objętość walca wynosi `r V`$cm^3$. Aby wyliczyć niepewność obliczania objętości walca skorzystano z wzoru na niepewność złożoną: $u(V)=\sqrt{(\frac{\partial V}{\partial D})u^2(D) + (\frac{\partial V}{\partial d})u^2(d) + (\frac{\partial V}{\partial H})u^2(H) + (\frac{\partial V}{\partial h})u^2(h)}$. Niepewność złożona wynosi ostatecznie `r sumbledroot`cm^3^. Wyliczona objętość wynosi `r V`(`r sumbledroot`)$cm^3$.
 
 ```{r, results='asis', echo=FALSE}
 cat("\\newpage")
@@ -258,7 +258,7 @@ cat("\\newpage")
 
 ## Analiza oporu na oporniku R4
 
-Spróbujemy, na podstawie obliczeń na oporniku R4, wyznaczyć opór tego opornika. Badaliśmy napięcia i natężenia z różnymi zakresami. Zobaczmy najpierw wszystkie dane na wykresie:
+Na wykresie przedstawiono wyniki pomiarów napięcia i natężenia z różnymi zakresami, które posłużą do wyznaczenia oporu opornika R4. 
 
 ```{R wykresR4, echo=FALSE, message=FALSE}
 pomiar_R4 <- read_excel("data2.xlsx", "R4")
@@ -270,7 +270,7 @@ p
 
 ```
 
-Widzimy, że jedna obserwacja zdecydowanie nie pasuje do reszty i zostanie potraktowana jako błąd gruby. Przeprowadzimy teraz prostą przez zbiór obserwacji.
+Jeden z punktów na wykresie znacznie odstaje od innych i zostanie potraktowany jako błąd gruby. 
 
 ```{R wynikiR4, echo=FALSE, message=FALSE}
 pomiar_R4 <- read_excel("data2.xlsx", "R4")
@@ -284,10 +284,10 @@ a <- ((lm(UU ~ II, data=pomiar_R4))[["coefficients"]])[2]
 
 ```
 
-Z dopasowania prostej do zestawu danych widzimy, że średni opór wynosi $383.587 \Omega$. Jest to współczynnik kierunkowy tej prostej. Niepewność tych obliczeń dopasowania wynosi $2.639$. Opór wynosi więc $383.58(2.64)\Omega$
+Po dopasowaniu prostej do zestawu danych wyznaczono średni opór równy $383,587 \Omega$. Jest to współczynnik kierunkowy tej prostej. Niepewność obliczeń dopasowania wynosi $2,639 \Omega$. Opór wynosi więc $383,58(2,64)\Omega$
 
-Nastepnie przedstawiamy wyliczone dla każdej obserwacji wartości oporu, wraz z niepewnością złożoną. Niepewność złożona dla oporu liczona jest ze wzoru: $u_R = \sqrt{(\frac{\partial R}{\partial U})u_U^2 + (\frac{\partial R}{\partial I})u_I^2}$.
-Wartość $u_U$ wyliczana jest ze wzoru $u_U = \frac{\Delta U}{\sqrt{3}}$, gdzie $\Delta U=\frac{klasa*zakres}{100}$, natomiast wartość $u_I$ ze wzoru $u_I=\frac{\Delta I}{\sqrt{3}}$, gdzie $\Delta I=0.012 I +0.1$ dla zakresu $200mA$, natomiast $\Delta I=0.005 I + 0.01$ dla zakresu $20mA$.
+Poniżej przedstawiono wyliczone dla każdej obserwacji wartości oporu, wraz z niepewnością złożoną. Niepewność złożona dla oporu liczona jest ze wzoru: $u_R = \sqrt{(\frac{\partial R}{\partial U})u_U^2 + (\frac{\partial R}{\partial I})u_I^2}$.
+Wartość $u_U$ wyliczana jest ze wzoru $u_U = \frac{\Delta U}{\sqrt{3}}$, gdzie $\Delta U=\frac{klasa*zakres}{100}$, natomiast wartość $u_I$ ze wzoru $u_I=\frac{\Delta I}{\sqrt{3}}$, gdzie $\Delta I=0.012 I +0.1$ dla zakresu $200mA$. $\Delta I=0,005 I + 0.01$ dla zakresu $20mA$.
 
 ```{R wynikiR4blad, echo=FALSE, message=FALSE}
 pomiar_R4 <- read_excel("data2.xlsx", "R4")
@@ -307,9 +307,9 @@ cat("\\newpage")
 
 # Podsumowanie i wnioski
 
-Podczas zajęć wykonano pomiary niezbędne do wyznaczenia objętości metalowego prostopadłościanu, bryły w kształcie walca z wyciętym walcem oraz pomiary napięcia i natężenia czterech oporników, które posłużyły do wyznaczenia oporów wraz z towarzyszącymi im błędami pomiarowymi. Na podstawie pomiarów wykonanych dla opornika nr 4 wyznaczono wykres prądowo-napięciowy, wyraźnie ukazujący liniową zależność napięcia od natężenia, co potwierdza prawo Ohma. 
+Podczas zajęć wykonano pomiary niezbędne do wyznaczenia objętości metalowego prostopadłościanu, bryły w kształcie walca z wyciętym walcem oraz pomiary napięcia i natężenia czterech oporników. Wyniki tych pomiarów posłuzyły do wyznaczenia oporów wraz z ich błędami pomiarowymi. Na podstawie pomiarów wykonanych dla opornika R4 wyznaczono wykres prądowo-napięciowy, wyraźnie ukazujący liniową zależność napięcia od natężenia, co potwierdza prawo Ohma. 
 
-Błąd gruby przy jednym z pomiarów mógł wynikać z przegrzania opornika lub aparatury, błędnego zmontowania układu, poluzowania się kabli w układzie, lub błędu przy odczytaniu wyników z aparatury.
+Błąd gruby przy jednym z pomiarów mógł wynikać z przegrzania opornika lub aparatury, błędnego zmontowania układu, poluzowania się kabli w układzie lub błędu przy odczytaniu wyników z aparatury.
 
-Różne wyniki przy pomiarach prostopadłościanu i drugiej bryły mogły się brać z błędów przy odczytywaniu wyniku z aparatury, za mocnym dociśnięciem suwmiarki, jak również z uszczerbków i wypukłości na powierzchni brył.
+Różne wyniki przy pomiarach prostopadłościanu i drugiej bryły mogły wynikać z błędów przy odczytywaniu wyniku z aparatury, za mocnego dociśnięcia suwmiarki, jak również z uszczerbków i wypukłości na powierzchni brył.
 
