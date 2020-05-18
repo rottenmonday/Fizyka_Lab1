@@ -19,6 +19,7 @@ library(readxl)
 library(ggplot2)
 library(knitr)
 library(kableExtra)
+options(OutDec= ",")
 ```
    
 # Wstęp
@@ -215,7 +216,7 @@ Wysokość prostopadłościanu mierzono za pomocą mikrometru, którego niepewno
 cat("\\newpage")
 ```
 
-Dla boków a i b rozpatrujemy tylko niepewności typu B. Niepewność wzorcowania suwmiarki wynosi 0.02mm, niepewność eksperymentatora 0.01mm, więc niepewność typu B dla obu tych boków wynosi: $\sqrt{\frac{0.02^2}{3} + \frac{0.01^2}{3}}$mm, czyli `r prost_ab_cal`cm.
+Dla boków a i b rozpatrujemy tylko niepewności typu B. Niepewność wzorcowania suwmiarki wynosi 0,02mm, niepewność eksperymentatora 0,01mm, więc niepewność typu B dla obu tych boków wynosi: $\sqrt{\frac{0,02^2}{3} + \frac{0,01^2}{3}}$mm, czyli `r prost_ab_cal`cm.
 
 Aby obliczyć niepewność całkowitą skorzystano ze wzoru  $u(V)=\sqrt{(\frac{\partial V}{\partial h})u^2(h) + (\frac{\partial V}{\partial a})u^2(a) + (\frac{\partial V}{\partial b})u^2(b) }$. Niepewność złożona objętości wynosi: `r prost_cal`cm^3^. Ostateczny wynik `r prost_V`(`r prost_cal`)cm^3^.
 
@@ -246,7 +247,7 @@ sumbled <- pD + pd + pH + ph
 sumbledroot <- round(sqrt(sumbled), digit=3)
 ```
 
-Wartość średnia D wynosi: `r R`cm, d: `r r`cm, H: `r H`cm, h: `r hh`cm. Niepewność wzorcowania suwmiarki wynosi 0.02mm, więc niepewność typu B dla wszystkich tych obliczeń wynosi: $\sqrt{\frac{0.02^2}{3} + \frac{0.01^2}{3}}$mm, czyli `r nieppom`cm.
+Wartość średnia D wynosi: `r R`cm, d: `r r`cm, H: `r H`cm, h: `r hh`cm. Niepewność wzorcowania suwmiarki wynosi 0,02mm, więc niepewność typu B dla wszystkich tych obliczeń wynosi: $\sqrt{\frac{0,02^2}{3} + \frac{0,01^2}{3}}$mm, czyli `r nieppom`cm.
 
 Niepewność typu A dla wysokości walca wewnętrznego wyraża się ona wzorem: $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$ i wynosi: `r aniepval`cm. Niepewność całkowita dla wysokości walca wewnętrznego wynosi: `r niepcal`cm.
 
@@ -287,7 +288,7 @@ a <- ((lm(UU ~ II, data=pomiar_R4))[["coefficients"]])[2]
 Po dopasowaniu prostej do zestawu danych wyznaczono średni opór równy $383,587 \Omega$. Jest to współczynnik kierunkowy tej prostej. Niepewność obliczeń dopasowania wynosi $2,639 \Omega$. Opór wynosi więc $383,58(2,64)\Omega$
 
 Poniżej przedstawiono wyliczone dla każdej obserwacji wartości oporu, wraz z niepewnością złożoną. Niepewność złożona dla oporu liczona jest ze wzoru: $u_R = \sqrt{(\frac{\partial R}{\partial U})u_U^2 + (\frac{\partial R}{\partial I})u_I^2}$.
-Wartość $u_U$ wyliczana jest ze wzoru $u_U = \frac{\Delta U}{\sqrt{3}}$, gdzie $\Delta U=\frac{klasa*zakres}{100}$, natomiast wartość $u_I$ ze wzoru $u_I=\frac{\Delta I}{\sqrt{3}}$, gdzie $\Delta I=0.012 I +0.1$ dla zakresu $200mA$. $\Delta I=0,005 I + 0.01$ dla zakresu $20mA$.
+Wartość $u_U$ wyliczana jest ze wzoru $u_U = \frac{\Delta U}{\sqrt{3}}$, gdzie $\Delta U=\frac{klasa*zakres}{100}$, natomiast wartość $u_I$ ze wzoru $u_I=\frac{\Delta I}{\sqrt{3}}$, gdzie $\Delta I=0,012 I +0,1$ dla zakresu $200mA$. $\Delta I=0,005 I + 0,01$ dla zakresu $20mA$.
 
 ```{R wynikiR4blad, echo=FALSE, message=FALSE}
 pomiar_R4 <- read_excel("data2.xlsx", "R4")
