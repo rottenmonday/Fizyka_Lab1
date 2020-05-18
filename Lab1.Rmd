@@ -47,6 +47,10 @@ Istotnym zagadnieniem pierwszego laboratorium jest wyznaczanie niepewności pomi
 
 2. Obliczenie niepewności pomiaru **metodą typu B**: czyli każda metoda inna niż typu A. Zwykle w oparciu o dane o sprzęcie, np. niepewność wzorcowania, czy też niepewność eksperymentatora.
 
+```{r, results='asis', echo=FALSE}
+cat("\\newpage")
+```
+
 # Układ eksperymentalny
 
 1. W pierwszej części laboratoriów używana była suwmiarka oraz mikrometr do badania różnych wielkości w prostpadłościanie i walcu. 
@@ -168,11 +172,17 @@ tabela_pomiar <- data.frame(pomiar_R123["lp."],
                             pomiar_R123["ZU"],
                             pomiar_R123["ZI"],
                             check.names = FALSE)
+tabela_pomiar <- cbind(tabela_pomiar, pomiar_R123["U"]/(pomiar_R123["I"]/1000))
+tabela_pomiar <- cbind(tabela_pomiar, c(0.03, 0.03, 0.01))
+tabela_pomiar <- cbind(tabela_pomiar, c(0.6112, 0.08865, 0.04805))
 
-colnames(tabela_pomiar) <- c("lp.", "Opornik" ,"U ($V$)", "I ($mA$)", "Zakres U ($V$)", "Zakres I ($mA$)")
+colnames(tabela_pomiar) <- c("lp.", "Opornik" ,"U ($V$)", "I ($mA$)", "Zakres U ($V$)", "Zakres I ($mA$)", "Opór ($\\Omega$)", "Niepewność U ($V$)", "Niepewność I ($mA$)")
 
-kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Oporniki R1, R2, R3") %>%
-   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+tabela_pomiar[, 3:9] <- round(tabela_pomiar[, 3:9], 2)
+
+kable(tabela_pomiar[, -1], format = "latex", escape = FALSE, align = 'c', caption = "Oporniki R1, R2, R3") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) %>%
+   column_spec(column = 7:8, width = "2.5cm") 
 ```
 
 
@@ -185,20 +195,29 @@ kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "O
 prost_h_avg <- round(mean(pomiar_prost_h$`Wysokość ($mm$)`), 2)
 prost_h_sd <- round(sd(pomiar_prost_h$`Wysokość ($mm$)`), 2)
 
-prost_a_avg <- round(mean(pomiar_ab$a), 2) * 10
-prost_b_avg <- round(mean(pomiar_ab$b), 2) * 10
+prost_a_avg <- round(mean(pomiar_ab$a * 10), 2) 
+prost_b_avg <- round(mean(pomiar_ab$b * 10), 2) 
 prost_V <- round(prost_h_avg * prost_a_avg * prost_b_avg, 2)
 
-prost_B <- round(sqrt((0.01/sqrt(3))^2 + (0.005/sqrt(3))^2), 4)
+prost_A_h <- round(prost_h_sd / sqrt(30), 4)
+prost_B_h <- round(sqrt((0.01^2/3) + (0.005^2/3)), 4)
+h_cal <- round(sqrt(prost_B_h^2 +  prost_A_h^2), 4)
+prost_ab_cal <- round(sqrt((0.02^2/3) + (0.01^2/3)), 4)
 
+prost_cal <- round(sqrt(h_cal^2 + prost_ab_cal^2 + prost_ab_cal^2 ), 2)
 ```
 
 Średnie długości wysokości, boków a oraz b prostopadłościanu wynoszą odpowiednio `r prost_h_avg`mm, `r prost_a_avg`mm, `r prost_b_avg`mm. Z otrzymanych wyników otrzymano objętość prostopadłościanu V = `r prost_V`mm^3^.
 
-Wysokość prostopadłościanu mierzono za pomocą mikrometru, którego niepewność wzorcowania wynosi 0.01mm. Niepewność eksperymentatora przyjęto za 0.005mm. Niepewność typu B dla wysokości wynosi więc 0.01/sqrt(3) + 0.005/sqrt(3) = 0.0057mm.  Odchylenie standardowe wysokości prostopadłościanu jest równe `r prost_h_sd`mm, co ze wzoru ... oznacza, że niepewność typu A wynosi `r prost_h_sd/sqrt(30)`mm. , więc niepewność całkowita pomiaru wysokości wynosi: 
+Wysokość prostopadłościanu mierzono za pomocą mikrometru, którego niepewność wzorcowania wynosi 0.01mm. Niepewność eksperymentatora przyjęto za 0.005mm. Niepewność typu B dla wysokości wynosi więc $\sqrt{\frac{0.01^2}{3} + \frac{0.005^2}{3}}$mm, czyli `r prost_B_h`cm. Ze wzoru $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$ niepewność typu A wynosi `r prost_A_h`mm, co daje niepewność całkowitą równą `r h_cal`mm.
 
-Ladny wzorek 
+```{r, results='asis', echo=FALSE}
+cat("\\newpage")
+```
 
+Dla boków a i b rozpatrujemy tylko niepewności typu B. Niepewność wzorcowania suwmiarki wynosi 0.02mm, niepewność eksperymentatora 0.01mm, więc niepewność typu B dla obu tych boków wynosi: $\sqrt{\frac{0.02^2}{3} + \frac{0.01^2}{3}}$mm, czyli `r prost_ab_cal`cm.
+
+Aby obliczyć niepewność całkowitą skorzystamy ze wzoru  $u(V)=\sqrt{(\frac{\partial V}{\partial h})u^2(h) + (\frac{\partial V}{\partial a})u^2(a) + (\frac{\partial V}{\partial b})u^2(b) }$. Niepewność złożona objętości wynosi: `r prost_cal`cm^3^. Co daje ostateczny wynik `r prost_V`(`r prost_cal`)cm^3^.
 
 
 
@@ -231,7 +250,11 @@ Wartość średnia D wynosi: `r R`cm, d: `r r`cm, H: `r H`cm, h: `r hh`cm. Niepe
 
 Policzymy teraz niepewność typu A dla wysokości walca wewnętrznego. Wyraża się ona wzorem: $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$. Niepewność ta wynosi: `r aniepval`cm. Niepewność całkowita dla wysokości walca wewnętrznego wynosi: `r niepcal`cm.
 
-Korzystając ze wcześniej wspomnianego wzoru i odpowiednich wartości wyliczamy, że objętość walca wynosi: `r V`$cm^3$. Skorzystamy teraz ze wzoru na niepewność złożoną aby wyliczyć niepewność obliczania objętości walca: $u(V)=\sqrt{(\frac{\partial V}{\partial D})u^2(D) + (\frac{\partial V}{\partial d})u^2(d) + (\frac{\partial V}{\partial H})u^2(H) + (\frac{\partial V}{\partial h})u^2(h)}$. Niepewność złożona wynosi ostatecznie: `r sumbledroot`cm. W takim razie wyliczona objętość wynosi `r V`(`r sumbledroot`)$cm^3$.
+Korzystając ze wcześniej wspomnianego wzoru i odpowiednich wartości wyliczamy, że objętość walca wynosi: `r V`$cm^3$. Skorzystamy teraz ze wzoru na niepewność złożoną aby wyliczyć niepewność obliczania objętości walca: $u(V)=\sqrt{(\frac{\partial V}{\partial D})u^2(D) + (\frac{\partial V}{\partial d})u^2(d) + (\frac{\partial V}{\partial H})u^2(H) + (\frac{\partial V}{\partial h})u^2(h)}$. Niepewność złożona wynosi ostatecznie: `r sumbledroot`cm^3^. W takim razie wyliczona objętość wynosi `r V`(`r sumbledroot`)$cm^3$.
+
+```{r, results='asis', echo=FALSE}
+cat("\\newpage")
+```
 
 ## Analiza oporu na oporniku R4
 
@@ -270,13 +293,23 @@ Wartość $u_U$ wyliczana jest ze wzoru $u_U = \frac{\Delta U}{\sqrt{3}}$, gdzie
 pomiar_R4 <- read_excel("data2.xlsx", "R4")
 pomiar_R4 <- pomiar_R4[1:9, c("UU", "II","R", "niepewnosc")]
 colnames(pomiar_R4) <- c("U[V]", "I[A]", "R[Ohm]", "Niepewność złożona")
-kable(pomiar_R4)
+
+
+kable(round(pomiar_R4, 2), format = "latex", escape = FALSE, align = 'c', caption = "Niepewności R4") %>%
+   kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
 
 
 ```
 
-# Wyniki
+```{r, results='asis', echo=FALSE}
+cat("\\newpage")
+```
 
-# Porównanie z teorią, wartościami tablicowymi, innymi eksperymentami
+# Podsumowanie i wnioski
 
-# Wnioski i podsumowanie
+Podczas zajęć wykonano pomiary niezbędne do wyznaczenia objętości metalowego prostopadłościanu, bryły w kształcie walca z wyciętym walcem oraz pomiary napięcia i natężenia czterech oporników, które posłużyły do wyznaczenia oporów wraz z towarzyszącymi im błędami pomiarowymi. Na podstawie pomiarów wykonanych dla opornika nr 4 wyznaczono wykres prądowo-napięciowy, wyraźnie ukazujący liniową zależność napięcia od natężenia, co potwierdza prawo Ohma. 
+
+Błąd gruby przy jednym z pomiarów mógł wynikać z przegrzania opornika lub aparatury, błędnego zmontowania układu, poluzowania się kabli w układzie, lub błędu przy odczytaniu wyników z aparatury.
+
+Różne wyniki przy pomiarach prostopadłościanu i drugiej bryły mogły się brać z błędów przy odczytywaniu wyniku z aparatury, za mocnym dociśnięciem suwmiarki, jak również z uszczerbków i wypukłości na powierzchni brył.
+
