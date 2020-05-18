@@ -267,7 +267,7 @@ pomiar_R4 <- pomiar_R4[, c("UU", "II", "dUU", "dII")]
 p <- ggplot(pomiar_R4, aes(x=II, y=UU)) + geom_point() + 
    geom_errorbar(aes(ymin=UU-dUU, ymax=UU+dUU, xmin=II-dII, xmax=II+dII), width=0.001) +
    labs(x = "I[A]", y = "U[V]") +
-   ggtitle("Obserwacje natężenia i napięcia")
+   ggtitle("Wykres obserwacji zaleznosci U od I")
 p
 
 ```
@@ -281,7 +281,7 @@ p <- ggplot(pomiar_R4, aes(x=II, y=UU)) + geom_point() +
    geom_errorbar(aes(ymin=UU-dUU, ymax=UU+dUU, xmin=II-dII, xmax=II+dII), width=0.001) +
    geom_smooth(method='lm') +
    labs(x = "I[A]", y = "U[V]") +
-   ggtitle("Prosta dopasowana do obserwacji")
+   ggtitle("Liniowa zaleznosc U od I")
 p
 a <- ((lm(UU ~ II, data=pomiar_R4))[["coefficients"]])[2]
 
