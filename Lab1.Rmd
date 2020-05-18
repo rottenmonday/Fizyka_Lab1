@@ -89,6 +89,10 @@ colnames(tabela_pomiar) <- c("lp.", "Wysokość ($mm$)")
 
 kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Wysokość prostopadłościanu") %>%
    kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
+
+ggplot(tabela_pomiar, aes(x=`Wysokość ($mm$)`)) + geom_histogram(binwidth = 0.01, color="darkblue", fill="lightblue") + 
+   labs(title='Histogram pomiarów wysokości prostopadłościanu',x='Wysokość [mm]', y = 'Częstość')  +
+   theme(plot.title = element_text(hjust = 0.5))
 ```
 
 ```{R, echo=FALSE}
