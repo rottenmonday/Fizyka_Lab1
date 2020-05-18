@@ -78,19 +78,19 @@ W każdym kolejnym pomiarze staraliśmy się osiągać natężenie prądu o ~6mA
 # Dane eksperymentalne
 
 ```{R, echo=FALSE}
-pomiar_h <- read_excel("data.xlsx", "prost_h")
+pomiar_prost_h <- read_excel("data.xlsx", "prost_h")
 
 
-tabela_pomiar <- data.frame(pomiar_h["lp."],
-                            pomiar_h["h"],
+pomiar_prost_h <- data.frame(pomiar_prost_h["lp."],
+                            pomiar_prost_h["h"],
                             check.names = FALSE)
 
-colnames(tabela_pomiar) <- c("lp.", "Wysokość ($mm$)")
+colnames(pomiar_prost_h) <- c("lp.", "Wysokość ($mm$)")
 
-kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "Wysokość prostopadłościanu") %>%
+kable(pomiar_prost_h, format = "latex", escape = FALSE, align = 'c', caption = "Wysokość prostopadłościanu") %>%
    kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
 
-ggplot(tabela_pomiar, aes(x=`Wysokość ($mm$)`)) + geom_histogram(binwidth = 0.01, color="darkblue", fill="lightblue") + 
+ggplot(pomiar_prost_h, aes(x=`Wysokość ($mm$)`)) + geom_histogram(binwidth = 0.01, color="darkblue", fill="lightblue") + 
    labs(title='Histogram pomiarów wysokości prostopadłościanu',x='Wysokość [mm]', y = 'Częstość')  +
    theme(plot.title = element_text(hjust = 0.5))
 ```
@@ -180,6 +180,28 @@ kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "O
 # Opracowanie pomiarów oraz analiza niepewności pomiarów
 
 ## Analiza wyników obliczeń na prostopadłościanie
+
+```{r, echo = FALSE}
+prost_h_avg <- round(mean(pomiar_prost_h$`Wysokość ($mm$)`), 2)
+prost_h_sd <- round(sd(pomiar_prost_h$`Wysokość ($mm$)`), 2)
+
+prost_a_avg <- round(mean(pomiar_ab$a), 2) * 10
+prost_b_avg <- round(mean(pomiar_ab$b), 2) * 10
+prost_V <- round(prost_h_avg * prost_a_avg * prost_b_avg, 2)
+
+prost_B <- round(sqrt((0.01/sqrt(3))^2 + (0.005/sqrt(3))^2), 4)
+
+```
+
+Średnie długości wysokości, boków a oraz b prostopadłościanu wynoszą odpowiednio `r prost_h_avg`mm, `r prost_a_avg`mm, `r prost_b_avg`mm. Z otrzymanych wyników otrzymano objętość prostopadłościanu V = `r prost_V`mm^3^.
+
+Wysokość prostopadłościanu mierzono za pomocą mikrometru, którego niepewność wzorcowania wynosi 0.01mm. Niepewność eksperymentatora przyjęto za 0.005mm. Niepewność typu B dla wysokości wynosi więc 0.01/sqrt(3) + 0.005/sqrt(3) = 0.0057mm.  Odchylenie standardowe wysokości prostopadłościanu jest równe `r prost_h_sd`mm, co ze wzoru ... oznacza, że niepewność typu A wynosi `r prost_h_sd/sqrt(30)`mm. , więc niepewność całkowita pomiaru wysokości wynosi: 
+
+Ladny wzorek 
+
+
+
+
 
 ## Analiza wyników obliczeń objętości walca
 
