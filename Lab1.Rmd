@@ -179,6 +179,34 @@ kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "O
 
 ## Analiza wyników obliczeń objętości walca
 
+Korzystając ze wzoru na objętość walca z wyciętym kawałkiem: $V = \frac{\pi}{4}(D^2H - d^2h)$, policzymy objętość walca z laboratorium. Następnie wyliczymy niepewność pomiarową tych obliczeń, korzystając ze wzoru na niepewność złożoną. W pomiarach na D, H i d bierzemy pod uwagę tylko niepewność typu B, natomiast w pomiarze h bierzemy pod uwagę oba typy niepewności
+
+```{r setupWalec, echo=FALSE, message=FALSE}
+RHr <- read_excel("data.xlsx", "walec_RHr")
+h <- read_excel("data.xlsx", "walec_h")
+hmean <- round(mean(unlist(h["h"])))
+nieppom <- round(sqrt(0.002^2/3 + 0.001^2/3), digits=4)
+aniepval <- round(sqrt(sum((unlist(h["h"])-hmean)^2)/(10*9)), digits = 3)
+niepcal <- round(sqrt(aniepval^2 + (0.002/sqrt(3))^2), digits=4)
+R <- round(mean(unlist(RHr["R"])), digits=3)
+r <- round(mean(unlist(RHr["r"])), digits=3)
+H <- round(mean(unlist(RHr["H"])), digits=3)
+hh <- round(mean(unlist(h["h"])), digits=3)
+V <- round((pi/4)*(R^2*H -r^2*hh), digits=3)
+pD <- (pi/2)*R*H*nieppom^2
+pd <- (pi/2)*r*hh*nieppom^2
+pH <- (pi/4)*R^2*nieppom^2
+ph <- (pi/4)*r^2*niepcal^2
+sumbled <- pD + pd + pH + ph
+sumbledroot <- round(sqrt(sumbled), digit=3)
+```
+
+Wartość średnia D wynosi: `r R`cm, d: `r r`cm, H: `r H`cm, h: `r hh`cm. Niepewność wzorcowania suwmiarki wynosi 0.02mm, więc niepewność typu B dla wszystkich tych obliczeń wynosi: $\sqrt{\frac{0.02^2}{3} + \frac{0.01^2}{3}}$mm, czyli `r nieppom`cm.
+
+Policzymy teraz niepewność typu A dla wysokości walca wewnętrznego. Wyraża się ona wzorem: $\sqrt{\frac{\sum_{i=1}^N(x_i-x_s)^2}{N*(N-1)}}$. Niepewność ta wynosi: `r aniepval`cm. Niepewność całkowita dla wysokości walca wewnętrznego wynosi: `r niepcal`cm.
+
+Korzystając ze wcześniej wspomnianego wzoru i odpowiednich wartości wyliczamy, że objętość walca wynosi: `r V`$cm^3$. Skorzystamy teraz ze wzoru na niepewność złożoną aby wyliczyć niepewność obliczania objętości walca: $u(V)=\sqrt{(\frac{\partial V}{\partial D})u^2(D) + (\frac{\partial V}{\partial d})u^2(d) + (\frac{\partial V}{\partial H})u^2(H) + (\frac{\partial V}{\partial h})u^2(h)}$. Niepewność złożona wynosi ostatecznie: `r sumbledroot`cm. W takim razie wyliczona objętość wynosi `r V`(`r sumbledroot`)$cm^3$.
+
 ## Analiza oporu na oporniku R4
 
 Spróbujemy, na podstawie obliczeń na oporniku R4, wyznaczyć opór tego opornika. Badaliśmy napięcia i natężenia z różnymi zakresami. Zobaczmy najpierw wszystkie dane na wykresie:
