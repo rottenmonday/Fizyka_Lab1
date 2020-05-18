@@ -171,7 +171,55 @@ kable(tabela_pomiar, format = "latex", escape = FALSE, align = 'c', caption = "O
    kable_styling(position = "center", latex_options = c("striped", "HOLD_position")) 
 ```
 
+
+
 # Opracowanie pomiarów oraz analiza niepewności pomiarów
+
+## Analiza wyników obliczeń na prostopadłościanie
+
+## Analiza wyników obliczeń objętości walca
+
+## Analiza oporu na oporniku R4
+
+Spróbujemy, na podstawie obliczeń na oporniku R4, wyznaczyć opór tego opornika. Badaliśmy napięcia i natężenia z różnymi zakresami. Zobaczmy najpierw wszystkie dane na wykresie:
+
+```{R wykresR4, echo=FALSE, message=FALSE}
+pomiar_R4 <- read_excel("data2.xlsx", "R4")
+pomiar_R4 <- pomiar_R4[, c("UU", "II", "dUU", "dII")]
+p <- ggplot(pomiar_R4, aes(x=II, y=UU)) + geom_point() + 
+   geom_errorbar(aes(ymin=UU-dUU, ymax=UU+dUU, xmin=II-dII, xmax=II+dII), width=0.001) +
+   labs(x = "I[A]", y = "U[V]")
+p
+
+```
+
+Widzimy, że jedna obserwacja zdecydowanie nie pasuje do reszty i zostanie potraktowana jako błąd gruby. Przeprowadzimy teraz prostą przez zbiór obserwacji.
+
+```{R wynikiR4, echo=FALSE, message=FALSE}
+pomiar_R4 <- read_excel("data2.xlsx", "R4")
+pomiar_R4 <- pomiar_R4[1:9, c("UU", "II", "dUU", "dII")]
+p <- ggplot(pomiar_R4, aes(x=II, y=UU)) + geom_point() + 
+   geom_errorbar(aes(ymin=UU-dUU, ymax=UU+dUU, xmin=II-dII, xmax=II+dII), width=0.001) +
+   geom_smooth(method='lm') +
+   labs(x = "I[A]", y = "U[V]")
+p
+a <- ((lm(UU ~ II, data=pomiar_R4))[["coefficients"]])[2]
+
+```
+
+Z dopasowania prostej do zestawu danych widzimy, że średni opór wynosi $383.587 \Omega$. Jest to współczynnik kierunkowy tej prostej. Niepewność tych obliczeń dopasowania wynosi $2.639$. Opór wynosi więc $383.58(2.64)\Omega$
+
+Nastepnie przedstawiamy wyliczone dla każdej obserwacji wartości oporu, wraz z niepewnością złożoną. Niepewność złożona dla oporu liczona jest ze wzoru: $u_R = \sqrt{(\frac{\partial R}{\partial U})u_U^2 + (\frac{\partial R}{\partial I})u_I^2}$.
+Wartość $u_U$ wyliczana jest ze wzoru $u_U = \frac{\Delta U}{\sqrt{3}}$, gdzie $\Delta U=\frac{klasa*zakres}{100}$, natomiast wartość $u_I$ ze wzoru $u_I=\frac{\Delta I}{\sqrt{3}}$, gdzie $\Delta I=0.012 I +0.1$ dla zakresu $200mA$, natomiast $\Delta I=0.005 I + 0.01$ dla zakresu $20mA$.
+
+```{R wynikiR4blad, echo=FALSE, message=FALSE}
+pomiar_R4 <- read_excel("data2.xlsx", "R4")
+pomiar_R4 <- pomiar_R4[1:9, c("UU", "II","R", "niepewnosc")]
+colnames(pomiar_R4) <- c("U[V]", "I[A]", "R[Ohm]", "Niepewność złożona")
+kable(pomiar_R4)
+
+
+```
 
 # Wyniki
 
